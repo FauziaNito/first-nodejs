@@ -1,0 +1,98 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='bootstrap-css/css/bootstrap.css')
+  link(rel='stylesheet' href='css/style.css')
+  title Registration
+// Navbar
+nav.navbar.navbar-expand-lg.bg-light.pb-4
+  .container-fluid
+    a.navbar-brand(href='#' style='font-weight: bolder; font-size: 25px;') Ufarm
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current='page' href='#') Home
+        li.nav-item
+          a.nav-link(href='#') Link
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+            | Dropdown
+          ul.dropdown-menu
+            li
+              a.dropdown-item(href='#') Action
+            li
+              a.dropdown-item(href='#') Another action
+            li
+              hr.dropdown-divider
+            li
+              a.dropdown-item(href='#') Something else here
+        li.nav-item
+          a.nav-link.disabled Disabled
+      form.d-flex.mt-2(role='search')
+        // <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        a.btn.btn-style(href='home-page.html') Back
+// Registration Form
+.container-fluid.form-style
+  form#signup.form(action='/register' name='registration' method='post')
+    h3 FarmerOne Registration Form
+    hr
+    .row
+      .col
+        .form-field
+          label(for='surname')
+            | Surname:
+            small  *
+          input#surname(type='text' name='surname' autocomplete='off')
+        .form-field
+          label(for='ninnumber')
+            | NIN Number:
+            small  *
+          input#ninnumber(type='text' name='ninnumber' autocomplete='off')
+        .form-field
+          label(for='raddress') Address:
+          select(name='raddress' id='')
+            option(value='ug') Kololo
+            option(value='ke') Nddeba
+            option(value='tz') Busega
+      .col
+        .form-field
+          label(for='ward')
+            | Ward:
+            small  *
+          input#ward(type='text' name='ward' autocomplete='off')
+        .form-field
+          label(for='dob')
+            | Date of Birth:
+            small  *
+          input#dob(type='date' name='dob' autocomplete='off')
+          small
+        .form-field
+          label(for='type') Resident Type:
+          select(name='type' id='')
+            option(value='ug') Permanent
+            option(value='ke') Temporary
+      .col
+        .form-field
+          label(for='phonenumber')
+            | Phone Number:
+            small  *
+          input#phonenumber(type='text' name='phonenumber' autocomplete='off')
+        .form-field
+          label(for='dor')
+            | Date of Registration:
+            small  *
+          input#dor(type='date' name='dor' autocomplete='off')
+          small
+        .form-field
+          label(for='pos') Period of stay:
+          select#pos(name='pos')
+            option(value='ug') 10
+            option(value='ke') 20
+      // button
+      .form-field
+        input.btn.register-btn(type='submit' value='Register')
+script(src='bootstrap/js/bootstrap.bundle.js')
