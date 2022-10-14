@@ -1,5 +1,5 @@
 // Dependencies
-const express = require('express');// importing express
+const express = require('express');
 const path = require('path');
 //Instantiations
 const app = express();
@@ -7,28 +7,18 @@ const app = express();
 // Configurations
 // Setting a view engine to pug
 app.set('view engine', 'pug');
-// setting views as the directory(folder) where the view engine will find all other html/pug pages
 app.set('views', path.join(__dirname, 'views'));
 app.set('views',  './views');
 
 
-
 // *******Middleware*******
 
-//Simple request time logger for a specific route
-// app.use('/about', (req, res, next) => {
-//   console.log('A new request received at ' + Date.now());
-//   next();
-// });
 // To parse URL encoded data. Bodyparser
 app.use(express.urlencoded({ extended: false })); //bodyparser
-// app.use(express.urlencoded({ extended: true })); 
-
+ 
 //caters for static files. css, vanilla js etc
 app.use(express.static(path.join(__dirname, 'public')));
-// specifically for dynamic images uploaded from the website by the user-- its good practice to have a different folder for them
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
-
 
 // *******END Middleware*******
 
@@ -44,7 +34,7 @@ app.get('/about', (req, res) => { // new
     res.send('About page. Nice.');
   });
 
-  //A Route with Routing ***Parameters***-- Named URL segments(specifically Id )
+  //A Route with Routing ***Parameters***
 app.get('/books/:bookId', (req, res) => {
   res.send(req.params);
 });
@@ -69,7 +59,6 @@ app.post("/signup", (req, res) => {
   res.send("You have registered a user");
 });
 
-
 app.delete("/about", (req, res) => {
   res.send("You have deleted something");
 });
@@ -83,19 +72,18 @@ app.get("/signup", (req, res) => {
   res.sendFile(__dirname + "/html/signup.html");
 });
 
-//req.body picks & decodes the info from the form:Remember to set up a body parser middle ware up before routes
+//req.body picks & decodes the info from the form
 app.post("/signup", (req, res) => {
   console.log(req.body);
   res.redirect("/");
 });
 
 // Rendering pug files
-// When using a template engine(pug), the get() routes will render pages ie [res.render] instead of send ie [res.send]
 app.get("/register", (req, res) => {
   res.render('registration')
 });
 
-//req.body picks & decodes the info from the form:Remember to set up a body parser middle ware up before routes
+//req.body picks & decodes the info from the form
 app.post("/register", (req, res) => {
   console.log(req.body);
   res.redirect("/");
@@ -121,5 +109,5 @@ app.get('*', (req, res) => {
 
 // Bootstrapping Server
 //Marks the end of the file execution in the server file
-app.listen(3000, () => console.log('We are listening to port 3000')); 
+app.listen(3001, () => console.log('We are listening to port 3000')); 
 

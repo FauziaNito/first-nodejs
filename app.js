@@ -1,43 +1,69 @@
-// Dependencies
-const express = require('express');// importing express-always the first line
+//DEPENDENCIES
+const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose'); //plugin for mongoDB
+const config = require('./config/db');
+const passport = require('passport');
+//express session
+const expressSession = require('express-session')({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,  
+});
+// Import the user Model
+const Registration = require('./models/User');
 
-//Instantiations-----------Section in Anatomy of an Express Server
+// Importing Route Files-After separating routes into files
+const registrationRoute = require('./routes/registerRoutes');
+
+//INSTANTIATIONS
 const app = express();
 
-// Configurations
+// Setup Database Connections
+mongoose.connect(config.database,{ useNewUrlParser: true });
+const db = mongoose.connection;
 
-// Setting a view engine to pug
+// Check connection
+db.once('open', function(){
+
+  console.log('Connected to MongoDB');
+});
+// Check for db errors
+db.on('error', function(err){
+  console.error(err);
+});
+
+
+// CONFIGURATIONS
 app.set('view engine', 'pug');
-// setting views as the directory(folder) where the view engine will find all other html/pug pages
 app.set('views', path.join(__dirname, 'views'));
-app.set('views',  './views');
 
 
-
-// *******Middleware*******
-
-app.use(express.urlencoded({ extended: false })); //bodyparser
-// app.use(express.urlencoded({ extended: true })); 
-
-//caters for static files. css, vanilla js etc
+//MIDDLEWARE
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-// specifically for dynamic images uploaded from the website by the user-- its good practice to have a different folder for them
 app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
+app.use(expressSession);//Always above the passport
 
+// Passport Configuration Middleware** for Authentication and handling session
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(Registration.createStrategy()); // for Authenticating, sessions serializing & Deserializing
+passport.serializeUser(Registration.serializeUser()); // Tracking users serial number--It has the user's username & password
+passport.deserializeUser(Registration.deserializeUser());
 
-// *******END Middleware*******
+// ******ROUTES*******
+app.use("/", registrationRoute);
 
-
-// ******Routes*******
+// app.get('/signup',(req, res) =>{
+//   res.render('signup');
+// });
 
   // For invalid routes- this should be the second last line in a file
 app.get('*', (req, res) => {
   res.send('404! This is an invalid URL.');
 });
-// ******End Routes*******
 
 // Bootstrapping Server
-//Marks the end of the file execution in the server file
-app.listen(3000, () => console.log('We are listening to port 3000')); 
+app.listen(3000, () => console.log('We are listening to new file port 3000')); 
 

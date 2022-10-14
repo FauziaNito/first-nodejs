@@ -6,7 +6,7 @@ head
   link(rel='stylesheet' href='bootstrap-css/css/bootstrap.css')
   link(rel='stylesheet' href='css/style.css')
   title Registration
-// Navbar
+
 nav.navbar.navbar-expand-lg.bg-light.pb-4
   .container-fluid
     a.navbar-brand(href='#' style='font-weight: bolder; font-size: 25px;') Ufarm
@@ -33,11 +33,11 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
         li.nav-item
           a.nav-link.disabled Disabled
       form.d-flex.mt-2(role='search')
-        // <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+       
         a.btn.btn-style(href='home-page.html') Back
-// Registration Form
+
 .container-fluid.form-style
-  form#signup.form(action='/register' name='registration' method='post')
+  form#signup.form(action='/register' name='registration' method='POST')
     h3 FarmerOne Registration Form
     hr
     .row
@@ -55,9 +55,9 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
         .form-field
           label(for='raddress') Address:
           select(name='raddress' id='')
-            option(value='ug') Kololo
-            option(value='ke') Nddeba
-            option(value='tz') Busega
+            option Kololo
+            option Nddeba
+            option Busega
       .col
         .form-field
           label(for='ward')
@@ -72,9 +72,9 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
           small
         .form-field
           label(for='type') Resident Type:
-          select(name='type' id='')
-            option(value='ug') Permanent
-            option(value='ke') Temporary
+          select(name='residenttype' id='')
+            option Permanent
+            option Temporary      
       .col
         .form-field
           label(for='phonenumber')
@@ -88,11 +88,29 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
           input#dor(type='date' name='dor' autocomplete='off')
           small
         .form-field
-          label(for='pos') Period of stay:
+          label Period of stay:
           select#pos(name='pos')
-            option(value='ug') 10
-            option(value='ke') 20
-      // button
+            option 10
+            option 20
+      .col
+        .form-field
+          label(for='ward')
+            | Password:
+            small  *
+          input#ward(type='password' name='password' autocomplete='off')
+        .form-field
+          label(for='dob')
+            | Confirm Password:
+            small  *
+          input#dob(type='password' autocomplete='off')
+          small
+        .form-field
+          label(for='')
+            | Unique Number:
+            small  *
+          input#dob(type='text' name='uniquenumber' autocomplete='off')
+          small      
+    
       .form-field
         input.btn.register-btn(type='submit' value='Register')
-script(src='bootstrap/js/bootstrap.bundle.js')
+script(src='bootstrap-js/js/bootstrap.bundle.js')
