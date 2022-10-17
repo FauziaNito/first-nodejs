@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');// Helps in Authentication of user login details
+const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose"); // Helps in Authentication of user login details
 
 const userSchema = new mongoose.Schema({
 	surname: {
@@ -13,12 +13,14 @@ const userSchema = new mongoose.Schema({
 	},
 	raddress: {
 		type: String,
-		required: true,
 	},
 	ward: {
 		type: String,
-		required: true,
 		trim: true,
+	},
+	role: {
+		type: String,
+		required: true,
 	},
 	dob: {
 		type: Date,
@@ -26,7 +28,6 @@ const userSchema = new mongoose.Schema({
 	},
 	residenttype: {
 		type: String,
-		required: true,
 	},
 	phonenumber: {
 		type: Number,
@@ -35,7 +36,6 @@ const userSchema = new mongoose.Schema({
 	},
 	pos: {
 		type: String,
-		required: true,
 	},
 	password: {
 		type: String,

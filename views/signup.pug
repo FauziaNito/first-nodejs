@@ -33,7 +33,7 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
         li.nav-item
           a.nav-link.disabled Disabled
       form.d-flex.mt-2(role='search')
-       
+
         a.btn.btn-style(href='home-page.html') Back
 
 .container-fluid.form-style
@@ -73,8 +73,9 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
         .form-field
           label(for='type') Resident Type:
           select(name='residenttype' id='')
-            option Permanent
-            option Temporary      
+            option(value ="") Select Resident Type
+            option(value ="Permanent") Permanent
+            option(value ="Temporary") Temporary      
       .col
         .form-field
           label(for='phonenumber')
@@ -98,6 +99,7 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
             | Password:
             small  *
           input#ward(type='password' name='password' autocomplete='off')
+
         .form-field
           label(for='dob')
             | Confirm Password:
@@ -110,7 +112,12 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
             small  *
           input#dob(type='text' name='uniquenumber' autocomplete='off')
           small      
-    
+      .col
+        .form-field
+          label(for='type') Role:
+          select(name='role' id='')
+            option(value = "") Select Role
+            option(value = "farmerOne") Farmer One
       .form-field
         input.btn.register-btn(type='submit' value='Register')
 script(src='bootstrap-js/js/bootstrap.bundle.js')
