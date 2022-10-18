@@ -15,7 +15,7 @@ const Registration = require('./models/User');
 
 // Importing Route Files-After separating routes into files
 const registrationRoutes = require('./routes/registerRoutes');
-
+const urbanFarmerRouters = require('./routes/urbanFarmerRoutes')
 
 //INSTANTIATIONS
 const app = express();
@@ -55,7 +55,7 @@ passport.deserializeUser(Registration.deserializeUser());
 
 // ******ROUTES*******
 app.use("/", registrationRoutes);
-app.use("/", agriculturalOfficerRoutes);
+app.use('/',urbanFarmerRouters);
 
 // app.get('/signup',(req, res) =>{
 //   res.render('signup');

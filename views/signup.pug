@@ -37,7 +37,7 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
         a.btn.btn-style(href='home-page.html') Back
 
 .container-fluid.form-style
-  form#signup.form(action='/register' name='registration' method='POST')
+  form#signup.form(action='/register' name='registration' method='POST' onsubmit="return Validate();")
     h3 FarmerOne Registration Form
     hr
     .row
@@ -47,17 +47,20 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
             | Surname:
             small  *
           input#surname(type='text' name='surname' autocomplete='off')
+          small#nameerr
         .form-field
-          label(for='ninnumber')
+          label
             | NIN Number:
             small  *
-          input#ninnumber(type='text' name='ninnumber' autocomplete='off')
+          input#ninnumber(type='text' name='ninnumber' autocomplete='off' placeholder="forexample UF-001")
+          small#ninnumbererr
         .form-field
           label(for='raddress') Address:
-          select(name='raddress' id='')
+          select#address(name='raddress')
             option Kololo
             option Nddeba
             option Busega
+          small#adresserr
       .col
         .form-field
           label(for='ward')
@@ -93,31 +96,35 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
           select#pos(name='pos')
             option 10
             option 20
+          small#poserr
       .col
         .form-field
           label(for='ward')
             | Password:
             small  *
-          input#ward(type='password' name='password' autocomplete='off')
-
+          input#password(type='password' name='password' autocomplete='off')
+          small#passworderr
         .form-field
           label(for='dob')
             | Confirm Password:
             small  *
-          input#dob(type='password' autocomplete='off')
-          small
+          input#confirmpassword(type='password' name='confirmpassword' autocomplete='off')
+          small#confirmpassworderr
         .form-field
           label(for='')
             | Unique Number:
             small  *
-          input#dob(type='text' name='uniquenumber' autocomplete='off')
-          small      
+          input#uniquenumber(type='text' name='uniquenumber' autocomplete='off')
+          small#uniquenumbererr     
       .col
         .form-field
           label(for='type') Role:
-          select(name='role' id='')
-            option(value = "") Select Role
+          select#role(name='role')
+            option(value = "selectrole") Select Role
             option(value = "farmerOne") Farmer One
+            option(value = "urbanfarmer") Urban Farmer
+          small#roleerr
       .form-field
         input.btn.register-btn(type='submit' value='Register')
 script(src='bootstrap-js/js/bootstrap.bundle.js')
+script(src='/js/formvalidation.js')
