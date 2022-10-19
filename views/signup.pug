@@ -32,9 +32,8 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
               a.dropdown-item(href='#') Something else here
         li.nav-item
           a.nav-link.disabled Disabled
-      form.d-flex.mt-2(role='search')
-
-        a.btn.btn-style(href='home-page.html') Back
+    form(method="POST" action='/logout')
+      button.btn.btn-style(type='submit') Logout
 
 .container-fluid.form-style
   form#signup.form(action='/register' name='registration' method='POST' onsubmit="return Validate();")

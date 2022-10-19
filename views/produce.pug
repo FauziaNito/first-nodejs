@@ -37,24 +37,23 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
                 a.btn.btn-style(href='home-page.html') Back
 
 .container-fluid.form-style
-    form#signup.form(action='/register' name='registration' enctype="multipart/form-data" method='POST')
+    form#signup.form(action='/uploadproduce' name='registration' enctype="multipart/form-data" method='POST')
         h3 Produce Registration Form
         hr
         .row
             .col
                 .form-field
                     label(for='producename') Produce Name:
-                    select(name='producename' id='')
+                    select(name='producename')
                         option(value="Cassava") Cassava
                         option(value="Broccoli") Brocoli
                         option(value="Carrots") Carrots
             .col
                 .form-field
                     label(for='') Ward:
-                    select(name='ward' id='')
-                        option(value="Ward 1") Ward 1
-                        option(value="Ward 2") Ward 2
-                        option(value="Ward 3") Ward 3
+                    select(name='ward')
+                        if currentUser
+                            option(value = currentUser._id) #{currentUser.ward}
 
             .col
                 .form-field
@@ -78,7 +77,7 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
             .col
                 .form-field
                     label(for='') Mode of Delivery:
-                    select(name='modeofdelivery' id='')
+                    select(name='modeofdelivery')
                         option(value="pickup") Pick Up
                         option(value="homedelivery") Home Delivery
         .row 
@@ -86,8 +85,8 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
                 .form-field
                     label(for='') Supplier Name:
                     select(name='farmername' )
-                        each urbanfarmer in urbanfarmers
-                            option(value = urbanfarmer._id) #{urbanfarmer.surname +""+urbanfarmer.uniquenumber}               
+                        if currentUser
+                            option(value = currentUser._id) #{currentUser.surname +""+currentUser.uniquenumber}               
             .col
                 .form-field
                     label Mode of Payment:

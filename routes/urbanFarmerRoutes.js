@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const connectEnsureLogin = require('connect-ensure-login');
 
 // Importing Model
-const produceUpload = require('../models/ProduceUpload');
-const Registration = require('../models/User');
+const produceUpload = require("../models/ProduceUpload");
+const Registration = require("../models/User");
 
 // image upload
 var storage = multer.diskStorage({
@@ -19,20 +20,24 @@ var storage = multer.diskStorage({
 // instantiate variable upload to store multer functionality to upload image
 var upload = multer({ storage: storage });
 
-router.get("/uploadproduce", async (req, res) => {
-    const urbanFarmerList = await Registration.find({role: 'urbanfarmer'});
-	res.render("produce", {urbanfarmers:urbanFarmerList});
+// router.get("/uploadproduce", async (req, res) => {
+// 	const urbanFarmerList = await Registration.find({ role: "urbanfarmer" });
+// 	res.render("produce", { urbanfarmers: urbanFarmerList });
+// });
 
+router.get("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+	
+	res.render("produce", {currentUser: req.session.user});
 });
 
-router.post("/uploadproduce", upload.single('uploadimage'), async (req, res) => {
+router.post("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), upload.single("uploadimage"), async (req, res) => {
 	console.log(req.body);
 	try {
 		const produce = new produceUpload(req.body);
-        produce.uploadimage = req.file.path;
-		await produceUpload.save ();
-	} 
-    catch (error) {
+		produce.uploadimage = req.file.path;
+		await produce.save();
+		res.redirect("/uploadproduce");
+	} catch (error) {
 		res.status(400).send("Can't save this image");
 		console.log(error);
 	}

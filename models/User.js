@@ -37,11 +37,11 @@ const userSchema = new mongoose.Schema({
 	pos: {
 		type: String,
 	},
-	password: {
-		type: String,
-		required: true,
-		trim: true,
-	},
+	// password: {
+	// 	type: String,
+	// 	required: true,
+	// 	trim: true,
+	// },
 	uniquenumber: {
 		type: String,
 		required: true,

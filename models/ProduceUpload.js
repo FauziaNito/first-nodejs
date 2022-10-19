@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
 		required: true,
 	},
 	ward: {
-		type: String,
-		trim: true,
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Registration",
 	},
 	dor: {
 		type: Date,
@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
 	farmername: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Registration", //Creating a relationship btn farmers in Registration collection & produce
+	},
+	status: {
+		type: String,
+		default: "Pending",
+		enum: ["Pending", "Approved"],
 	},
 });
 
