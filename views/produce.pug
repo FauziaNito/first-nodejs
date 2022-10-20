@@ -49,9 +49,8 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
                 .form-field
                     label(for='') Ward:
                     select(name='ward')
-                        if urbanfarmers.length
-                            each urbanfarmer in urbanfarmers
-                                option(value = urbanfarmer._id) #{urbanfarmer.ward}
+                        if currentUser
+                            option(value = currentUser._id) #{currentUser.ward}
             .col
                 .form-field
                     label(for='')
@@ -82,9 +81,8 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
                 .form-field
                     label(for='') Supplier Name:
                     select(name='farmername' )
-                        if urbanfarmers.length
-                            each urbanfarmer in urbanfarmers
-                                option(value = urbanfarmer._id) #{urbanfarmer.surname +""+urbanfarmer.uniquenumber}               
+                        if currentUser
+                            option(value = currentUser._id) #{currentUser.surname +""+currentUser.uniquenumber}               
             .col
                 .form-field
                     label Mode of Payment:

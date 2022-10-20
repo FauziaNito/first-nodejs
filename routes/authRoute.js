@@ -8,7 +8,8 @@ router.get("/login", (req, res) => {
 // Login route
 
 router.post("/login", passport.authenticate("local", { failureRedirect: "/login" }), (req, res) => {
-    console.log("This is the user",req.session);
+	req.session.user = req.user;
+	console.log("This is the user", req.session);
 	res.redirect("/uploadproduce");
 });
 

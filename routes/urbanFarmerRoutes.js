@@ -20,16 +20,19 @@ var storage = multer.diskStorage({
 // instantiate variable upload to store multer functionality to upload image
 var upload = multer({ storage: storage });
 
-router.get("/uploadproduce", async (req, res) => {
-	const urbanFarmerList = await Registration.find({ role: "urbanfarmer" });
-	console.log(urbanFarmerList);
-	res.render("produce", { urbanfarmers: urbanFarmerList });
-});
-
-// router.get("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-// 	// console.log("This is the Current User ", req.session.user);
-// 	res.render("produce", { currentUser: req.session });
+// Produce form Route comes with all Urban farmers from the DB
+// connectEnsureLogin.ensureLoggedIn()***Restricts page access,olny loggedon user can access a page
+// router.get("/uploadproduce",connectEnsureLogin.ensureLoggedIn(), async (req, res) => {
+// 	const urbanFarmerList = await Registration.find({ role: "urbanfarmer" });
+// 	console.log(urbanFarmerList);
+// 	res.render("produce", { urbanfarmers: urbanFarmerList });
 // });
+
+// Route to get produce upload form with the loggedin user(UrbanFarmer)
+router.get("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), (req, res) => {
+	console.log("This is the Current User ", req.session.user);
+	res.render("produce", { currentUser: req.session.user });
+});
 
 router.post("/uploadproduce", upload.single("uploadimage"), async (req, res) => {
 	console.log(req.body);
@@ -54,18 +57,18 @@ router.get("/producelist", async (req, res) => {
 	}
 });
 // Updating Produce
-router.get('/produce/update/:id', async (req, res) =>{
+router.get("/produce/update/:id", async (req, res) => {
 	try {
-		const updateProduct = await Produce.findOne({_id:req.params.id});
-		res.render('produce-update',{product:updateProduct});
+		const updateProduct = await Produce.findOne({ _id: req.params.id });
+		res.render("produce-update", { product: updateProduct });
 	} catch (error) {
-		res.status(400).send('Unable to update produce');
+		res.status(400).send("Unable to update produce");
 	}
 });
 
 router.post("/produce/update", async (req, res) => {
 	try {
-		await Produce.findOneAndUpdate({_id:req.query.id},req.body);
+		await Produce.findOneAndUpdate({ _id: req.query.id }, req.body);
 		res.redirect("/producelist");
 	} catch (error) {
 		res.status(400).send("Unable to update produce");
