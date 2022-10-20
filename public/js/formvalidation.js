@@ -83,3 +83,20 @@ const Validate = () => {
 		confirmPasswordError.textContent = "";
 	}
 };
+
+
+// //FarmerOne Role input validation
+// 	if (farmerRole.value == "") {
+// 		farmerRole.style.border = "1px solid red";
+// 		farmerRoleError.textContent = "Please Enter Farmer One Role";
+// 		farmerRoleError.style = "color:red; font-size:11px; font-family:Arial, Helvetica, Sans-serif";
+// 		return false;
+// 	} else if (farmerRole.value == "selectrole") {
+// 		farmerRole.style.border = "1px solid red";
+// 		farmerRoleError.textContent = "Please Select Farmer One Role";
+// 		farmerRoleError.style = "color:red; font-size:11px; font-family:Arial, Helvetica, Sans-serif";
+// 		return false;
+// 	} else {
+// 		farmerRole.style.border = "1px solid green";
+// 		farmerRoleError.textContent = "";
+// 	}

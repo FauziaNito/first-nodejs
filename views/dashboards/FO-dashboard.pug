@@ -1,0 +1,97 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href='bootstrap-css/css/bootstrap.css')
+    link(rel='stylesheet' href='css/style.css')
+    title Ufarm
+//- Navbar
+nav.navbar.navbar-expand-lg.bg-light.pb-4
+    .container-fluid
+        a.navbar-brand(href='#' style='font-weight: bolder; font-size: 25px;') Ufarm | Farmer One
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.me-auto.mb-2.mb-lg-0.dropdown-style
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+                        | FarmerOne
+                    ul.dropdown-menu
+                        li
+                            a.dropdown-item(href='#') Action
+                        li
+                            a.dropdown-item(href='#') Another action
+                        li
+                            hr.dropdown-divider
+                        li
+                            a.dropdown-item(href='#') Something else here
+            form.d-flex.mt-2(role='search')
+                //- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                a.btn.btn-style(href='signup.html') Register
+//- Cards
+.container.card-container
+    .card.card-style(style='width: 18rem;')
+        .div(style='margin: auto;')
+            .card-body
+                h5.card-title(style='font-size:30px;') Registered Farmers
+                h6.card-subtitle.mb-2.text-muted(style='font-size:20px; text-align:center; ') 8000
+
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+    .card.card-style(style='width: 18rem;')
+        .div(style='margin: auto;')
+            .card-body
+                h5.card-title(style='font-size:30px;') Uploaded Produce
+                h6.card-subtitle.mb-2.text-muted(style='font-size:20px; text-align:center; ') 25000
+
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+    .card.card-style(style='width: 18rem;')
+        .div(style='margin: auto;')
+            .card-body
+                h5.card-title(style='font-size:30px;') Confirmed Orders
+                h6.card-subtitle.mb-2.text-muted(style='font-size:20px; text-align:center; ') 7500
+
+                a.card-link(href='#') Card link
+                a.card-link(href='#') Another link
+.container(style='margin-top: 50px; align:center;')
+    .card.mt-0.ml-0(style='width:800px; height: 380px; ')
+        .card-body
+            h5.card-title Recent Registered farmers 
+            |             .
+            table.table.table-hover
+                thead
+                    tr
+                        th(scope='col') No
+                        th(scope='col') Name
+                        th(scope='col') Ward
+                        th(scope='col') Phone Number
+                tbody
+                    tr
+                        th(scope='row') 1
+                        td Mark
+                        td Otto
+                        td @mdo
+                    tr
+                        th(scope='row') 2
+                        td Jacob
+                        td Thornton
+                        td @fat
+                    tr
+                        th(scope='row') 3
+                        td(colspan='2') Larry the Bird
+                        td @twitter
+                    tr
+                        th(scope='row') 3
+                        td(colspan='2') Larry the Bird
+                        td @twitter
+                    tr
+                        th(scope='row') 3
+                        td(colspan='2') Larry the Bird
+                        td @twitter
+                    tr
+                        th(scope='row') 3
+                        td(colspan='2') Larry the Bird
+                        td @twitter
+script(src='bootstrap-js/js/bootstrap.bundle.js')

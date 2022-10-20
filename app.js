@@ -17,6 +17,8 @@ const Registration = require('./models/User');
 const registrationRoutes = require('./routes/registerRoutes');
 const urbanFarmerRouters = require('./routes/urbanFarmerRoutes');
 const authenticationRoute = require('./routes/authRoute');
+const agriculturalOfficerRoutes = require('./routes/agriculturalOfficerRoutes');
+const farmerOneRouters = require('./routes/farmerOneRoutes');
 
 //INSTANTIATIONS
 const app = express();
@@ -58,6 +60,8 @@ passport.deserializeUser(Registration.deserializeUser());
 app.use("/", registrationRoutes);
 app.use('/',urbanFarmerRouters);
 app.use("/", authenticationRoute);
+app.use('/',agriculturalOfficerRoutes);
+app.use('/',farmerOneRouters);
 
 // app.get('/signup',(req, res) =>{
 //   res.render('signup');

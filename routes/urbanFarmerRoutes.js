@@ -42,5 +42,9 @@ router.post("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), upload.single
 		console.log(error);
 	}
 });
+// Dashboard Route
+router.get("/UFdashboard", (req, res) => {
+	res.render("dashboards/UF-dashboard");
+});
 
 module.exports = router;
