@@ -30,22 +30,22 @@ const Validate = () => {
 		roleError.textContent = "";
 	}
 
-	const unregex = /^UF-([0-9]{3})+$/;
+	// const unregex = /^UF-([0-9]{3})+$/;
 
-	if (uniqueNumber.value == "") {
-		uniqueNumber.style.border = "1px solid red";
-		uniqueNumberError.textContent = "Please Enter Farmer One Unique Number";
-		uniqueNumberError.style = "color:red; font-size:11px; font-family:Arial, Helvetica, Sans-serif";
-		return false;
-	} else if (!uniqueNumber.value.match(unregex)) {
-		uniqueNumber.style.border = "1px solid red";
-		uniqueNumberError.textContent = "Unique Number must follow UF-000 format";
-		uniqueNumberError.style = "color:red; font-size:11px; font-family:Arial, Helvetica, Sans-serif";
-		return false;
-	} else {
-		uniqueNumber.style.border = "1px solid green";
-		uniqueNumberError.textContent = "";
-	}
+	// if (uniqueNumber.value == "") {
+	// 	uniqueNumber.style.border = "1px solid red";
+	// 	uniqueNumberError.textContent = "Please Enter Farmer One Unique Number";
+	// 	uniqueNumberError.style = "color:red; font-size:11px; font-family:Arial, Helvetica, Sans-serif";
+	// 	return false;
+	// } else if (!uniqueNumber.value.match(unregex)) {
+	// 	uniqueNumber.style.border = "1px solid red";
+	// 	uniqueNumberError.textContent = "Unique Number must follow UF-000 format";
+	// 	uniqueNumberError.style = "color:red; font-size:11px; font-family:Arial, Helvetica, Sans-serif";
+	// 	return false;
+	// } else {
+	// 	uniqueNumber.style.border = "1px solid green";
+	// 	uniqueNumberError.textContent = "";
+	// }
 
 	if (password.value == "") {
 		password.style.border = "1px solid red";

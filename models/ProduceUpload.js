@@ -35,6 +35,9 @@ const userSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Registration", //Creating a relationship btn farmers in Registration collection & produce
 	},
+	uploadimage: {
+		type:String
+	},
 	status: {
 		type: String,
 		default: "Pending",

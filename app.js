@@ -57,6 +57,9 @@ passport.serializeUser(Registration.serializeUser()); // Tracking users serial n
 passport.deserializeUser(Registration.deserializeUser());
 
 // ******ROUTES*******
+app.get('/homepage', (req, res) =>{
+  res.render('home-page');
+})
 app.use("/", registrationRoutes);
 app.use('/',urbanFarmerRouters);
 app.use("/", authenticationRoute);
