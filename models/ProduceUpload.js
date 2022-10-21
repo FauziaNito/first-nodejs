@@ -36,12 +36,17 @@ const userSchema = new mongoose.Schema({
 		ref: "Registration", //Creating a relationship btn farmers in Registration collection & produce
 	},
 	uploadimage: {
-		type:String
+		type: String,
 	},
 	status: {
 		type: String,
 		default: "Pending",
 		enum: ["Pending", "Approved"],
+	},
+	availability: { //
+		type: String,
+		default: "available",
+		enum: ["available", "booked", "N/A"],
 	},
 });
 

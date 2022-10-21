@@ -34,7 +34,8 @@ router.get("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), (req, res) => 
 	res.render("produce", { currentUser: req.session.user });
 });
 
-router.post("/uploadproduce", upload.single("uploadimage"), async (req, res) => {
+//produce upload route with images
+router.post("/uploadproduce", connectEnsureLogin.ensureLoggedIn(), upload.single("uploadimage"), async (req, res) => {
 	console.log(req.body);
 	try {
 		const produce = new Produce(req.body);
@@ -48,15 +49,20 @@ router.post("/uploadproduce", upload.single("uploadimage"), async (req, res) => 
 	}
 });
 
+// Getting List of Product from Database
 router.get("/producelist", async (req, res) => {
 	try {
-		let products = await Produce.find();
+		// const order = {_id:-1}
+		let products = await Produce.find().sort({ $natural: -1 }); //To sort the current product
 		res.render("produce-list", { products: products });
 	} catch (error) {
 		res.status(400).send("Unable to get Produce list");
 	}
 });
+
+
 // Updating Produce
+// Update get route for a particular id
 router.get("/produce/update/:id", async (req, res) => {
 	try {
 		const updateProduct = await Produce.findOne({ _id: req.params.id });
@@ -65,7 +71,7 @@ router.get("/produce/update/:id", async (req, res) => {
 		res.status(400).send("Unable to update produce");
 	}
 });
-
+// Update post route
 router.post("/produce/update", async (req, res) => {
 	try {
 		await Produce.findOneAndUpdate({ _id: req.query.id }, req.body);
@@ -74,6 +80,17 @@ router.post("/produce/update", async (req, res) => {
 		res.status(400).send("Unable to update produce");
 	}
 });
+
+//delete Route
+router.post("/produce/delete", async (req, res) => {
+	try {
+		await Produce.deleteOne({ _id: req.body.id }); //Note Produce should be your collection name
+		res.redirect("/producelist");
+	} catch (error) {
+		res.status(400).send("back"); //back helps you to stay on the same route
+	}
+});
+
 // Dashboard Route
 router.get("/UFdashboard", (req, res) => {
 	res.render("dashboards/UF-dashboard");

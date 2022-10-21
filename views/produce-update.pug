@@ -62,8 +62,8 @@ nav.navbar.navbar-expand-lg.bg-light.pb-4
                 .form-field
                     label(for='') Mode of Delivery:
                     select(name='modeofdelivery')
-                        option(value="pickup") Pick Up
-                        option(value="homedelivery") Home Delivery
+                        option(value="pickup" selected = product.producename === 'pickup') Pick Up
+                        option(value="homedelivery" selected = product.producename === 'homedelivery') Home Delivery
             .col
                 .form-field
                     label Mode of Payment:
